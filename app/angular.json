@@ -104,6 +104,71 @@
           }
         }
       }
+    },
+    "models": {
+      "projectType": "library",
+      "root": "projects/models",
+      "sourceRoot": "projects/models/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/models/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/models/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/models/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/models/src/test.ts",
+            "tsConfig": "projects/models/tsconfig.spec.json",
+            "karmaConfig": "projects/models/karma.conf.js"
+          }
+        }
+      }
+    },
+    "services": {
+      "projectType": "library",
+      "root": "projects/services",
+      "sourceRoot": "projects/services/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/services/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/services/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/services/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/services/src/test.ts",
+            "tsConfig": "projects/services/tsconfig.spec.json",
+            "karmaConfig": "projects/services/karma.conf.js"
+          }
+        }
+      }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
