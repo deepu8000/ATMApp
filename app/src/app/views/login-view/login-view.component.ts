@@ -8,7 +8,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class LoginViewComponent implements OnInit {
 
-  const login = new FormGroup({
+  readonly login = new FormGroup({
     email: new FormControl('', {nonNullable: true}),
     password: new FormControl('', {nonNullable: true}),
 });
