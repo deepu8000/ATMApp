@@ -3,3 +3,5 @@ vscode:
   extensions:
     - johnpapa.Angular2
     - alexiv.vscode-angular2-files
+    - rvest.vs-code-prettier-eslint
+    - dbaeumer.vscode-eslint
