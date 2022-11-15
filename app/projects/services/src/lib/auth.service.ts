@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Status } from 'projects/models/src/lib/enum/status.enum';
 import { User } from 'projects/models/src/lib/inteface/user';
 
 @Injectable({
@@ -24,28 +23,33 @@ export class AuthService {
   private loggerInUser?: User = undefined;
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    let user = localStorage.getItem("user");
+    if (user) {
+      this.loggerInUser = JSON.parse(user);
+    }
+  }
 
-  public login(userName: string, password: string, redirectTo: string = 'dashboard') : boolean {
+  public login(userName: string, password: string, redirectTo: string = 'dashboard'): boolean {
     // Get the first user matching the credentials
     const user = this._users.find(x => x.UserName === userName && x.Password === password);
     if (user) {
       this.loggerInUser = user;
+      localStorage.setItem("user", JSON.stringify(user));
       this.router.navigate([redirectTo]);
       return true;
     }
     return false;
   }
 
-  public logOut() : boolean
-  {
-      this.loggerInUser = undefined;
-      this.router.navigate(['login'],);
-      return true;
+  public logOut(): boolean {
+    this.loggerInUser = undefined;
+    localStorage.clear();
+    this.router.navigate(['login'],);
+    return true;
   }
 
-  public isAuthenticated():boolean
-  {
+  public isAuthenticated(): boolean {
     return this.loggerInUser !== undefined;
   }
 
