@@ -22,7 +22,7 @@ const routes: Routes = [{
     },
     {
       path: '',
-      redirectTo: 'withdraw',
+      redirectTo: 'overview',
       pathMatch: 'full'
     }
   ]

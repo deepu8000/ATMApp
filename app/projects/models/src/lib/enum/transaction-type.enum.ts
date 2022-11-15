@@ -1,4 +1,4 @@
 export enum TransactionType {
-    Restock = 1,
-    Withdrawl = 2
+    Restock = 'Restock',
+    Withdrawl = 'Withdrawl'
 }

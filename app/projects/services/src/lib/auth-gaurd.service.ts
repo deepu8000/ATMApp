@@ -20,11 +20,21 @@ export class AuthGuard implements CanActivate, CanLoad, CanActivateChild {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return true;
+    if(this.authService.isAuthenticated())
+    {
+      return true;
+    }
+    this.router.navigate(['login']);
+    return false;
   }
 
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    throw new Error('Method not implemented.');
+    if(this.authService.isAuthenticated())
+    {
+      return true;
+    }
+    this.router.navigate(['login']);
+    return false;
   }
 
 

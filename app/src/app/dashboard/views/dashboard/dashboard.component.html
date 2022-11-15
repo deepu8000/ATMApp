@@ -1,2 +1,22 @@
-<p>dashboard works!</p>
+<mat-toolbar>
+    <span>Dashboard</span>
+    <span style="flex:1 1 auto;"></span>
+    <button mat-icon-button aria-label="Logout" (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+</mat-toolbar>
+<nav mat-tab-nav-bar [backgroundColor]="'primary'">
+    <a mat-tab-link [routerLink]="['overview']"
+       (click)="activeLink = 'overview'"
+       [active]="activeLink == 'overview'"> Overview
+    </a>
+    <a mat-tab-link [routerLink]="['withdraw']"
+       (click)="activeLink = 'withdraw'"
+       [active]="activeLink == 'withdraw'"> Withdraw
+    </a>
+    <a mat-tab-link [routerLink]="['restock']"
+       (click)="activeLink = 'restock'"
+       [active]="activeLink == 'restock'"> Restock
+    </a>
+</nav>
 <router-outlet></router-outlet>

@@ -44,7 +44,7 @@ private _transactionHistorySubject : BehaviorSubject<TransactionHistory[]> = new
 private _denominationStacksSubject : BehaviorSubject<DenominationStack[]> = new BehaviorSubject(this._denominationStacks);
 
 public denominationStacks: Observable<DenominationStack[]> = this._denominationStacksSubject.asObservable(); 
-public transactionHistory: Observable<TransactionHistory[]>  = this._transactionHistorySubject.asObservable()l
+public transactionHistory: Observable<TransactionHistory[]>  = this._transactionHistorySubject.asObservable();
 
 reStock(denomination:Denomination,count:number):boolean
 {

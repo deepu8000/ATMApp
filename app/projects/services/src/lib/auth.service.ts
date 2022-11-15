@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'projects/models/src/lib/inteface/user';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,13 +21,12 @@ export class AuthService {
     }
   ];
 
-  private loggerInUser?: User = undefined;
-
+  private _loggerInUser?: User = undefined;
 
   constructor(private router: Router) {
     let user = localStorage.getItem("user");
     if (user) {
-      this.loggerInUser = JSON.parse(user);
+      this._loggerInUser = JSON.parse(user);
     }
   }
 
@@ -34,7 +34,7 @@ export class AuthService {
     // Get the first user matching the credentials
     const user = this._users.find(x => x.UserName === userName && x.Password === password);
     if (user) {
-      this.loggerInUser = user;
+      this._loggerInUser = user;
       localStorage.setItem("user", JSON.stringify(user));
       this.router.navigate([redirectTo]);
       return true;
@@ -43,14 +43,14 @@ export class AuthService {
   }
 
   public logOut(): boolean {
-    this.loggerInUser = undefined;
+    this._loggerInUser = undefined;
     localStorage.clear();
     this.router.navigate(['login'],);
     return true;
   }
 
   public isAuthenticated(): boolean {
-    return this.loggerInUser !== undefined;
+    return this._loggerInUser !== undefined;
   }
 
 }
