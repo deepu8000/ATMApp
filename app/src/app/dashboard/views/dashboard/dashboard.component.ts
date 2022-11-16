@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'projects/services/src/public-api';
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthService } from 'projects/services/src/public-api';
 export class DashboardComponent implements OnInit {
 
   activeLink: string = '';
-  constructor(private authService : AuthService) { 
+  constructor(private snackBar: MatSnackBar,private authService : AuthService) { 
     this.activeLink = 'overview';
   }
 
@@ -19,6 +20,9 @@ export class DashboardComponent implements OnInit {
   logout() : void
   {
     this.authService.logOut();
+    this.snackBar.open("Logout successfully!", "ok", {
+      verticalPosition: "top",
+    });
   }
 
 }

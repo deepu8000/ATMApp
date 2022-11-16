@@ -1,1 +1,23 @@
-<p>withdraw works!</p>
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="withdrawalForm" (ngSubmit)="submit()">
+            <p>
+                <mat-form-field>
+                    <input min="1" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                        #withdrawAmount="matInput" autofocus type="number" matInput placeholder="Enter amount"
+                        formControlName="withdrawAmount">
+                </mat-form-field>
+            </p>
+            <p *ngIf="error" class="error">
+                {{ error }}
+            </p>
+
+            <div class="button">
+                <button mat-stroked-button color="accent">Reset</button>
+                <div style="flex: 1 1 auto ;"></div>
+                <button type="submit" mat-raised-button color="primary">Withdraw</button>
+            </div>
+
+        </form>
+    </mat-card-content>
+</mat-card>

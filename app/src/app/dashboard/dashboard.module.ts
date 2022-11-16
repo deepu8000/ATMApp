@@ -6,6 +6,7 @@ import { WithdrawComponent } from './views/withdraw/withdraw.component';
 import { RestockComponent } from './views/restock/restock.component';
 import { OverviewComponent } from './views/overview/overview.component';
 import { MaterialModule } from '../material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { MaterialModule } from '../material.module';
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    ReactiveFormsModule,
     MaterialModule
   ]
 })

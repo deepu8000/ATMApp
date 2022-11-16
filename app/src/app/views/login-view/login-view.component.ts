@@ -1,6 +1,7 @@
 import { AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'projects/services/src/public-api';
 
 @Component({
@@ -8,7 +9,7 @@ import { AuthService } from 'projects/services/src/public-api';
   templateUrl: './login-view.component.html',
   styleUrls: ['./login-view.component.scss']
 })
-export class LoginViewComponent implements AfterViewInit  {
+export class LoginViewComponent implements AfterViewInit {
 
   @ViewChild('userName') userNameField !: MatInput;
   @ViewChild('password') password !: MatInput;
@@ -19,8 +20,8 @@ export class LoginViewComponent implements AfterViewInit  {
     password: new FormControl('', Validators.required),
   });
 
-  constructor(private authService: AuthService) { 
-    
+  constructor(private snackBar: MatSnackBar, private authService: AuthService) {
+
   }
   ngAfterViewInit(): void {
     this.userNameField.focus();
@@ -35,21 +36,27 @@ export class LoginViewComponent implements AfterViewInit  {
         this.error = "Please enter valid Username and Password!";
         return;
       }
-      else{
-        alert("Logged in successfully!")
+      else {
+        this.snackBar.open("Login successfully!", "ok", {
+          verticalPosition: "top",
+        });
         return;
       }
     }
-    if(!this.loginForm.value.password)
-    {
+    if (!this.loginForm.value.password) {
       this.password.focus();
     }
-    if(!this.loginForm.value.userName)
-    {
+    if (!this.loginForm.value.userName) {
       this.userNameField.focus();
     }
-    
+
     this.error = "Please enter Username and Password!";
+  }
+
+  reset() {
+    this.error = '';
+    this.loginForm.value.userName = '';
+    this.loginForm.value.password = '';
   }
 
 }
