@@ -11,8 +11,7 @@ export class AuthGuard implements CanActivate, CanLoad, CanActivateChild {
   }
 
   canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    if(this.authService.isAuthenticated())
-    {
+    if (this.authService.isAuthenticated()) {
       return true;
     }
     this.router.navigate(['login']);
@@ -20,8 +19,7 @@ export class AuthGuard implements CanActivate, CanLoad, CanActivateChild {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if(this.authService.isAuthenticated())
-    {
+    if (this.authService.isAuthenticated()) {
       return true;
     }
     this.router.navigate(['login']);
@@ -29,14 +27,13 @@ export class AuthGuard implements CanActivate, CanLoad, CanActivateChild {
   }
 
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    if(this.authService.isAuthenticated())
-    {
-      return true;
+    if (this.authService.isAuthenticated()) {
+      if (this.authService.isAuthorized(childRoute.data['roles'])) {
+        return true;
+      }
     }
     this.router.navigate(['login']);
     return false;
   }
-
-
 
 }

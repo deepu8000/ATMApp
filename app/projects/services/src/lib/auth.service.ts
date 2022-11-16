@@ -53,4 +53,10 @@ export class AuthService {
     return this._loggerInUser !== undefined;
   }
 
+  public isAuthorized(roles:string[])
+  {
+    debugger;
+    return roles.find(x=>x === this._loggerInUser?.Role);
+  }
+
 }
