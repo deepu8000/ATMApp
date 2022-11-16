@@ -27,7 +27,6 @@ export class WithdrawComponent implements AfterViewInit {
 
   submit() {
     if (this.withdrawalForm.valid) {
-      debugger;
       const withdrawAmount: number = this.withdrawalForm.value.withdrawAmount ? this.withdrawalForm.value.withdrawAmount : 0;
       if (withdrawAmount > 0) {
         let res = this.denominationStackService.withdraw(withdrawAmount);
@@ -37,6 +36,7 @@ export class WithdrawComponent implements AfterViewInit {
         }
         else {
           this.error = "";
+          this.withdrawalForm.reset();
           this.withdrawAmountField.focus();
           this.snackBar.open("Withdrawal successfully!", "ok", {
             verticalPosition: "top",
@@ -53,7 +53,7 @@ export class WithdrawComponent implements AfterViewInit {
 
   reset() {
     this.error = '';
-    this.withdrawalForm.value.withdrawAmount = 0;
+    this.withdrawalForm.reset();
   }
 
 }
