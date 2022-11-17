@@ -95,7 +95,7 @@ withdraw(amount:number) : boolean
             denominationStack.count = denominationStack.count -  denominationWithdrawble.count;
           }
       });
-      this._addTransaction(denominationsWithdrawble,TransactionType.Withdrawl,refAmount, Status.Success);
+      this._addTransaction(denominationsWithdrawble,TransactionType.Withdrawl,refAmount, Status.Success, denominationsWithdrawble.map(val => val.count > 0 ? `$${val.denomination} X ${val.count}`:'').filter(x=>x!='').join(' , '));
       return true;
     }
     this._addTransaction([],TransactionType.Withdrawl,refAmount, Status.Failure, `$${refAmount} withdrawl failed, Insufficient funds.`);
