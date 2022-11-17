@@ -34,6 +34,10 @@ private readonly _denominationStacks : DenominationStack[] = [
     count : 10
   },
   {
+    denomination : Denomination.Two,
+    count : 10
+  },
+  {
     denomination : Denomination.One,
     count : 10
   },
