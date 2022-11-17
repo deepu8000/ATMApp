@@ -58,7 +58,7 @@ reStock(denomination:Denomination,count:number):boolean
       denomiNationStack.count = denomiNationStack.count + count;
       this._denominationStacksSubject.next(this._denominationStacks);
       
-      this._addTransaction([denomiNationStack],TransactionType.Restock,count * denomiNationStack.denomination, Status.Success);
+      this._addTransaction([denomiNationStack],TransactionType.Restock,count * denomiNationStack.denomination, Status.Success, `$${denomination} X ${count}`);
 
       return true;
     }
